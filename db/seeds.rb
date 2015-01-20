@@ -1,1 +1,1 @@
-Admin.create(uid: '904715', provider: 'cas')
+Person.create(calnetUid: '904715')

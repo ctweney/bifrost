@@ -13,10 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
   def check_authenticated
-    if current_admin.present?
-      Rails.logger.info "Current admin uid = #{current_admin.uid}"
+    if current_person.present?
+      Rails.logger.info "Current admin uid = #{current_person.uid}"
     else
-      redirect_to admin_omniauth_authorize_path :cas
+      redirect_to person_omniauth_authorize_path :cas
     end
   end
 end
