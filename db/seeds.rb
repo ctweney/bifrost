@@ -1,1 +1,1 @@
-Person.create(calnetUid: '904715')
+Person.create(calnet_uid: '904715')
