@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Person do
   describe '#from_omniauth' do
     before {

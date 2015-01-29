@@ -8,6 +8,7 @@ class IndexController < ApplicationController
 
   def denied
   end
+
 end
 
 

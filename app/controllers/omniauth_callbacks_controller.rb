@@ -1,4 +1,5 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
   def cas
     Rails.logger.debug "Omniauth data: #{request.env['omniauth.auth'].inspect}"
     uid = request.env['omniauth.auth'].uid
@@ -11,4 +12,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to '/denied'
     end
   end
+
 end
