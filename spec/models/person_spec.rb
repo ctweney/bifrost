@@ -12,6 +12,7 @@ describe Person do
     it 'gets a Person' do
       expect(subject).to be
       expect(subject.name).to eq 'Test User'
+      expect(subject.calnet_uid).to eq '1234'
     end
   end
 end
