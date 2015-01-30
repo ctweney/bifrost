@@ -5,7 +5,6 @@ class Person < ActiveRecord::Base
   has_many :administered_applications, :class_name => Application, :foreign_key => 'admin_id'
   has_many :technical_applications, :class_name => Application, :foreign_key => 'technical_id'
   has_many :testing_applications, :class_name => Application, :foreign_key => 'testing_id'
-
   belongs_to :organization
 
   rails_admin do
