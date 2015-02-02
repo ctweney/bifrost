@@ -6,9 +6,6 @@ class Maturity < ActiveRecord::Base
     fields do
       help false
     end
-    configure :applications do
-      read_only true
-    end
     configure :maturity_id do
       read_only true
       label 'ID:'

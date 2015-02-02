@@ -7,12 +7,6 @@ class Organization < ActiveRecord::Base
     fields do
       help false
     end
-    configure :people do
-      read_only true
-    end
-    configure :business_processes do
-      read_only true
-    end
     configure :organization_id do
       read_only true
       label 'ID:'

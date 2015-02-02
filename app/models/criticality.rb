@@ -1,5 +1,7 @@
 class Criticality < ActiveRecord::Base
 
+  has_many :integrations, :inverse_of => :criticality
+
   rails_admin do
     fields do
       help false

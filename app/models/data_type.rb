@@ -1,6 +1,6 @@
 class DataType < ActiveRecord::Base
 
-  has_many :data_fields
+  has_many :data_fields, :inverse_of => :data_type
 
   rails_admin do
     fields do

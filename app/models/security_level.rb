@@ -1,6 +1,6 @@
 class SecurityLevel < ActiveRecord::Base
 
-  has_many :edos
+  has_many :edos, :inverse_of => :security_level
 
   rails_admin do
     fields do
