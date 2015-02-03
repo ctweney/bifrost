@@ -29,10 +29,12 @@
   ./d restart
   ```
 1. Rebuild rails (on Gemfile changes, etc):
+
   ```
   ./d rebuild
   ```
 1. See rails logs inside the docker container:
+
   ```
   vagrant ssh
   docker logs rails
