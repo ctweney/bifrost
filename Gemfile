@@ -36,6 +36,7 @@ gem 'omniauth-cas', '~> 1.1.0'
 gem 'devise', '~> 3.4.1'
 gem 'rails_admin', '~> 0.6.6'
 gem 'log4r', '~> 1.1'
+gem 'rabl', '~> 0.11.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
