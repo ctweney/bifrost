@@ -8,12 +8,10 @@ docker rm $(docker ps -a -q)
 # Build containers from Dockerfiles
 docker build -t postgres /app/docker/postgres
 docker build -t rails /app
-docker build -t redis /app/docker/redis/
 
 # Run and link the containers
 docker run -d --name postgres -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker postgres:latest
-docker run -d --name redis redis:latest
-docker run -d -p 3000:3000 -v /app:/app --link redis:redis --link postgres:db --name rails rails:latest
+docker run -d -p 3000:3000 -v /app:/app --link postgres:db --name rails rails:latest
 
 SCRIPT
 
@@ -21,7 +19,6 @@ SCRIPT
 # are started when the vm is rebooted.
 $start = <<SCRIPT
 docker start postgres
-docker start redis
 docker start rails
 SCRIPT
 

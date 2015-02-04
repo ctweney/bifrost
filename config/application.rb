@@ -25,5 +25,17 @@ module Invint
 
     config.active_record.pluralize_table_names = false
 
+    # Set up the cache and its log
+    config.cache_store = ActiveSupport::Cache.lookup_store :memory_store
+    config.cache_store.logger = Log4r::Logger.new('invint_cache')
+    config.cache_store.logger.level = Log4r::DEBUG
+    config.cache_store.logger.outputters << Log4r::DateFileOutputter.new(
+      'outputter',
+      {
+        dirname: "#{Rails.root}/log",
+        filename: 'cache.log',
+        formatter: Log4r::PatternFormatter.new(:pattern => '[%d] [%l] %m'),
+        level: config.cache_store.logger.level
+      })
   end
 end
