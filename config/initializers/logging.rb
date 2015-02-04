@@ -33,3 +33,4 @@ outputter = Log4r::DateFileOutputter.new('outputter', {
 })
 Rails.logger.outputters << outputter
 
+Rails.logger.warn "RAILS_ENV = #{ENV['RAILS_ENV']}, log level = #{config_level.inspect}"
