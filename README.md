@@ -1,4 +1,4 @@
-#Inventory of Interfaces
+#Bifrost: Inventory of Interfaces at UC Berkeley
 
 ##Installation
 
