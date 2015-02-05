@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'cancan', '~> 1.6.10'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'devise', '~> 3.4.1'
 gem 'jquery-rails'

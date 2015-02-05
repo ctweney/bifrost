@@ -4,6 +4,7 @@ RailsAdmin.config do |config|
     warden.authenticate! scope: :person
   end
   config.current_user_method(&:current_person)
+  config.authorize_with :cancan
 
   config.actions do
     dashboard # mandatory
