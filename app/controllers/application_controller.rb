@@ -7,8 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    # TODO make this configurable
-    'https://auth-test.berkeley.edu/cas/logout'
+    Rails.application.secrets['cas_logout_url']
   end
 
   def check_authenticated
