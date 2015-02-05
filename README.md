@@ -5,8 +5,8 @@
 1. Get the code and switch to its directory:
 
   ```
-  git clone https://github.com/ctweney/invint.git
-  cd invint
+  git clone https://github.com/ctweney/bifrost.git
+  cd bifrost
   ```
 
 1. Install Vagrant https://www.vagrantup.com/downloads.html

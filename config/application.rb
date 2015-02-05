@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Invint
+module Bifrost
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -27,7 +27,7 @@ module Invint
 
     # Set up the cache and its log
     config.cache_store = ActiveSupport::Cache.lookup_store :memory_store
-    config.cache_store.logger = Log4r::Logger.new('invint_cache')
+    config.cache_store.logger = Log4r::Logger.new('bifrost_cache')
     config.cache_store.logger.level = Log4r::DEBUG
     config.cache_store.logger.outputters << Log4r::DateFileOutputter.new(
       'outputter',
