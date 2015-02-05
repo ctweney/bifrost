@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127234717) do
+ActiveRecord::Schema.define(version: 20150205222224) do
 
   create_table "action_type", primary_key: "action_type_id", force: :cascade do |t|
     t.string "description"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150127234717) do
     t.integer "technical_id"
     t.integer "testing_id"
     t.boolean "legacy_flag"
+    t.string  "go_live"
   end
 
   add_index "application", ["admin_id"], name: "admin_id_idx"
