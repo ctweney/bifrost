@@ -9,9 +9,7 @@ class Log4r::Logger
 end
 
 Rails.logger = Log4r::Logger.new('invint')
-Rails.logger.level = Log4r::DEBUG
-
-config_level = Log4r::INFO # TODO make configurable
+config_level = Rails.application.secrets['log_level']
 if config_level.blank?
   config_level = Log4r::INFO
 elsif config_level.is_a?(String)
@@ -33,4 +31,4 @@ outputter = Log4r::DateFileOutputter.new('outputter', {
 })
 Rails.logger.outputters << outputter
 
-Rails.logger.warn "RAILS_ENV = #{ENV['RAILS_ENV']}, log level = #{config_level.inspect}"
+Rails.logger.warn "RAILS_ENV = #{ENV['RAILS_ENV']}, log level = #{config_level}"
