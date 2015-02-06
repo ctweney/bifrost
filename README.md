@@ -28,7 +28,7 @@
 1. Edit db/seeds.rb and make yourself an admin with a line like this:
 
   ```
-  Person.create(calnet_uid: '12345', name: 'Your Name')
+  Person.create(calnet_uid: '12345', name: 'Your Name').roles << admin
   ```
 
 1. Initialize the database:
