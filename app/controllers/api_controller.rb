@@ -1,7 +1,7 @@
 class ApiController < ApplicationController
 
   def apps
-    authorize! :view, nil
+    authorize! :read, nil
     @apps = Application.all
   end
 
