@@ -18,4 +18,9 @@ RailsAdmin.config do |config|
     show_in_app
   end
 
+  config.navigation_static_links = {
+    'Logout' => '/logout'
+  }
+  config.navigation_static_label = 'Tools'
+
 end
