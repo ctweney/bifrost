@@ -15,7 +15,9 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    Rails.application.secrets['cas_logout_url']
+    url = "#{Rails.application.secrets['cas_logout_url']}?service=#{request.protocol}#{request.host_with_port}"
+    Rails.logger.warn "Logout url = #{url}"
+    url
   end
 
   def check_authenticated
