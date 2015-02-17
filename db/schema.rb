@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206222804) do
+ActiveRecord::Schema.define(version: 20150217224737) do
 
   create_table "action_type", primary_key: "action_type_id", force: :cascade do |t|
     t.string "description"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150206222804) do
     t.boolean "legacy_flag"
     t.string  "go_live"
     t.string  "jira_issue"
+    t.string  "cs_module"
   end
 
   add_index "application", ["admin_id"], name: "admin_id_idx"
@@ -180,6 +181,7 @@ ActiveRecord::Schema.define(version: 20150206222804) do
     t.string  "reference_uri"
     t.string  "jira_uri"
     t.integer "last_action_id"
+    t.string  "cs_module"
   end
 
   add_index "interface", ["application_id"], name: "interface_application_id_idx"
