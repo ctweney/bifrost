@@ -1,6 +1,15 @@
+# generates coverage reports in coverage/index.html
+require 'simplecov'
+SimpleCov.start 'rails'
+SimpleCov.start do
+  add_group 'Models', 'app/models'
+end
+
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+
+require 'devise'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -69,8 +78,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  # generates coverage reports in coverage/index.html
-  require 'simplecov'
-  SimpleCov.start 'rails'
+  # Include some helper functions for the specs.
+  config.extend SpecHelperModule
+  config.include Devise::TestHelpers, :type => :controller
 
 end
