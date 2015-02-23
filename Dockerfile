@@ -36,7 +36,6 @@ RUN apt-get install -y -q postgresql-client
 # Rails app
 ADD docker/rails/start-server.sh /start-server.sh
 RUN chmod +x /start-server.sh
-# RUN mkdir /app
 
 # Preinstall majority of gems
 WORKDIR /tmp 
@@ -44,8 +43,9 @@ ADD ./Gemfile Gemfile
 ADD ./Gemfile.lock Gemfile.lock
 RUN bundle install 
 
+# Set up application code
 RUN mkdir /app
-# ADD . /app
+ADD . /app
 
 ENV RAILS_ENV development
 
