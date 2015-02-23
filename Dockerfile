@@ -49,9 +49,6 @@ ADD . /app
 
 ENV RAILS_ENV development
 
-ADD ./docker/rails/setup_database.sh /setup_database.sh
-RUN chmod +x /setup_database.sh
-
 EXPOSE 3000
 
 CMD ["/start-server.sh"]
