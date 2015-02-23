@@ -1,14 +1,26 @@
-default: &default
-  adapter: <%= Rails.application.secrets['database']['adapter'] %>
-  pool: <%= Rails.application.secrets['database']['pool'] %>
-  timeout: <%= Rails.application.secrets['database']['timeout'] %>
-  database: <%= Rails.application.secrets['database']['name'] %>
 
 development:
-  <<: *default
+  adapter: <%= Rails.application.secrets['database']['adapter'] %>
+  encoding: <%= Rails.application.secrets['database']['encoding'] %>
+  database: <%= Rails.application.secrets['database']['database'] %>
+  pool: <%= Rails.application.secrets['database']['pool'] %>
+  timeout: <%= Rails.application.secrets['database']['timeout'] %>
+  username: <%= Rails.application.secrets['database']['username'] %>
+  password: <%= Rails.application.secrets['database']['password'] %>
+  host: <%= Rails.application.secrets['database']['host'] %>
 
 test:
-  <<: *default
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
 
 production:
-  <<: *default
+  adapter: <%= Rails.application.secrets['database']['adapter'] %>
+  encoding: <%= Rails.application.secrets['database']['encoding'] %>
+  database: <%= Rails.application.secrets['database']['database'] %>
+  pool: <%= Rails.application.secrets['database']['pool'] %>
+  timeout: <%= Rails.application.secrets['database']['timeout'] %>
+  username: <%= Rails.application.secrets['database']['username'] %>
+  password: <%= Rails.application.secrets['database']['password'] %>
+  host: <%= Rails.application.secrets['database']['host'] %>

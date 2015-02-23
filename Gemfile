@@ -6,6 +6,7 @@ gem 'devise', '~> 3.4.1'
 gem 'jquery-rails'
 gem 'log4r', '~> 1.1'
 gem 'omniauth-cas', '~> 1.1.0'
+gem 'pg', '~> 0.18.1'
 gem 'rabl', '~> 0.11.6'
 gem 'rack-cache', '~> 1.2'
 gem 'rails', '4.2.0'
@@ -25,3 +26,4 @@ group :development, :test do
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end
+

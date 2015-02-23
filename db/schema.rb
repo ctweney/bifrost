@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150217225045) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "action_type", primary_key: "action_type_id", force: :cascade do |t|
     t.string "description"
   end
@@ -32,28 +35,28 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.string  "cs_module"
   end
 
-  add_index "application", ["admin_id"], name: "admin_id_idx"
-  add_index "application", ["disposition_id"], name: "application_disposition_id_idx"
-  add_index "application", ["maturity_id"], name: "maturity_id_idx"
-  add_index "application", ["owner_id"], name: "application_owner_id_idx"
-  add_index "application", ["technical_id"], name: "technical_id_idx"
-  add_index "application", ["testing_id"], name: "testing_id_idx"
+  add_index "application", ["admin_id"], name: "admin_id_idx", using: :btree
+  add_index "application", ["disposition_id"], name: "application_disposition_id_idx", using: :btree
+  add_index "application", ["maturity_id"], name: "maturity_id_idx", using: :btree
+  add_index "application", ["owner_id"], name: "application_owner_id_idx", using: :btree
+  add_index "application", ["technical_id"], name: "technical_id_idx", using: :btree
+  add_index "application", ["testing_id"], name: "testing_id_idx", using: :btree
 
   create_table "business_process", primary_key: "business_process_id", force: :cascade do |t|
     t.string  "name",              limit: 255
-    t.text    "description",       limit: 255
+    t.text    "description"
     t.integer "functional_org_id"
   end
 
-  add_index "business_process", ["functional_org_id"], name: "functional_org_id_idx"
+  add_index "business_process", ["functional_org_id"], name: "functional_org_id_idx", using: :btree
 
   create_table "business_process_app", primary_key: "business_process_app_id", force: :cascade do |t|
     t.integer "application_id"
     t.integer "business_process_id"
   end
 
-  add_index "business_process_app", ["application_id"], name: "business_process_app_application_id_idx"
-  add_index "business_process_app", ["business_process_id"], name: "business_process_id_idx"
+  add_index "business_process_app", ["application_id"], name: "business_process_app_application_id_idx", using: :btree
+  add_index "business_process_app", ["business_process_id"], name: "business_process_id_idx", using: :btree
 
   create_table "criticality", primary_key: "criticality_id", force: :cascade do |t|
     t.string "description"
@@ -69,8 +72,8 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.string  "cardinality"
   end
 
-  add_index "data_edo", ["data_field_id"], name: "data_edo_data_field_id_idx"
-  add_index "data_edo", ["edo_id"], name: "data_edo_edo_id_idx"
+  add_index "data_edo", ["data_field_id"], name: "data_edo_data_field_id_idx", using: :btree
+  add_index "data_edo", ["edo_id"], name: "data_edo_edo_id_idx", using: :btree
 
   create_table "data_field", primary_key: "data_field_id", force: :cascade do |t|
     t.string  "name"
@@ -85,8 +88,8 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.integer "last_action_id"
   end
 
-  add_index "data_field", ["data_type_id"], name: "data_type_id_idx"
-  add_index "data_field", ["last_action_id"], name: "data_field_last_action_id_idx"
+  add_index "data_field", ["data_type_id"], name: "data_type_id_idx", using: :btree
+  add_index "data_field", ["last_action_id"], name: "data_field_last_action_id_idx", using: :btree
 
   create_table "data_mapping", primary_key: "data_mapping_id", force: :cascade do |t|
     t.integer "source_field_id"
@@ -96,10 +99,10 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.text    "transformation"
   end
 
-  add_index "data_mapping", ["result_combination_id"], name: "result_combination_id_idx"
-  add_index "data_mapping", ["result_field_id"], name: "result_field_id_idx"
-  add_index "data_mapping", ["source_combination_id"], name: "source_combination_id_idx"
-  add_index "data_mapping", ["source_field_id"], name: "source_field_id_idx"
+  add_index "data_mapping", ["result_combination_id"], name: "result_combination_id_idx", using: :btree
+  add_index "data_mapping", ["result_field_id"], name: "result_field_id_idx", using: :btree
+  add_index "data_mapping", ["source_combination_id"], name: "source_combination_id_idx", using: :btree
+  add_index "data_mapping", ["source_field_id"], name: "source_field_id_idx", using: :btree
 
   create_table "data_type", primary_key: "data_type_id", force: :cascade do |t|
     t.string "description"
@@ -119,17 +122,17 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.integer "last_action_id"
   end
 
-  add_index "edo", ["last_action_id"], name: "edo_last_action_id_idx"
-  add_index "edo", ["security_level_id"], name: "security_level_id_idx"
-  add_index "edo", ["sor_id"], name: "sor_id_idx"
+  add_index "edo", ["last_action_id"], name: "edo_last_action_id_idx", using: :btree
+  add_index "edo", ["security_level_id"], name: "security_level_id_idx", using: :btree
+  add_index "edo", ["sor_id"], name: "sor_id_idx", using: :btree
 
   create_table "field_combination", primary_key: "field_combination_id", force: :cascade do |t|
     t.integer "data_combination_id"
     t.integer "data_field_id"
   end
 
-  add_index "field_combination", ["data_combination_id"], name: "data_combination_id_idx"
-  add_index "field_combination", ["data_field_id"], name: "field_combination_data_field_id_idx"
+  add_index "field_combination", ["data_combination_id"], name: "data_combination_id_idx", using: :btree
+  add_index "field_combination", ["data_field_id"], name: "field_combination_data_field_id_idx", using: :btree
 
   create_table "integration", primary_key: "integration_id", force: :cascade do |t|
     t.integer "source_interface_id"
@@ -148,11 +151,11 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.integer "last_action_id"
   end
 
-  add_index "integration", ["criticality_id"], name: "criticality_id_idx"
-  add_index "integration", ["last_action_id"], name: "integration_last_action_id_idx"
-  add_index "integration", ["owner_id"], name: "integration_owner_id_idx"
-  add_index "integration", ["source_interface_id"], name: "source_interface_id_idx"
-  add_index "integration", ["target_interface_id"], name: "target_interface_id_idx"
+  add_index "integration", ["criticality_id"], name: "criticality_id_idx", using: :btree
+  add_index "integration", ["last_action_id"], name: "integration_last_action_id_idx", using: :btree
+  add_index "integration", ["owner_id"], name: "integration_owner_id_idx", using: :btree
+  add_index "integration", ["source_interface_id"], name: "source_interface_id_idx", using: :btree
+  add_index "integration", ["target_interface_id"], name: "target_interface_id_idx", using: :btree
 
   create_table "interface", primary_key: "interface_id", force: :cascade do |t|
     t.integer "application_id"
@@ -184,14 +187,14 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.string  "cs_module"
   end
 
-  add_index "interface", ["application_id"], name: "interface_application_id_idx"
-  add_index "interface", ["disposition_id"], name: "interface_disposition_id_idx"
-  add_index "interface", ["inbound_message_id"], name: "inbound_message_id_idx"
-  add_index "interface", ["last_action_id"], name: "interface_last_action_id_idx"
-  add_index "interface", ["messaging_type_id"], name: "messaging_type_id_idx"
-  add_index "interface", ["outbound_message_id"], name: "outbound_message_id_idx"
-  add_index "interface", ["transfer_method_id"], name: "transfer_method_id_idx"
-  add_index "interface", ["web_service_type_id"], name: "web_service_type_id_idx"
+  add_index "interface", ["application_id"], name: "interface_application_id_idx", using: :btree
+  add_index "interface", ["disposition_id"], name: "interface_disposition_id_idx", using: :btree
+  add_index "interface", ["inbound_message_id"], name: "inbound_message_id_idx", using: :btree
+  add_index "interface", ["last_action_id"], name: "interface_last_action_id_idx", using: :btree
+  add_index "interface", ["messaging_type_id"], name: "messaging_type_id_idx", using: :btree
+  add_index "interface", ["outbound_message_id"], name: "outbound_message_id_idx", using: :btree
+  add_index "interface", ["transfer_method_id"], name: "transfer_method_id_idx", using: :btree
+  add_index "interface", ["web_service_type_id"], name: "web_service_type_id_idx", using: :btree
 
   create_table "maturity", primary_key: "maturity_id", force: :cascade do |t|
     t.string "description"
@@ -207,9 +210,9 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.integer "last_action_id"
   end
 
-  add_index "message", ["disposition_id"], name: "message_disposition_id_idx"
-  add_index "message", ["last_action_id"], name: "message_last_action_id_idx"
-  add_index "message", ["message_format_id"], name: "message_format_id_idx"
+  add_index "message", ["disposition_id"], name: "message_disposition_id_idx", using: :btree
+  add_index "message", ["last_action_id"], name: "message_last_action_id_idx", using: :btree
+  add_index "message", ["message_format_id"], name: "message_format_id_idx", using: :btree
 
   create_table "message_data", primary_key: "message_data_id", force: :cascade do |t|
     t.integer "message_id"
@@ -217,8 +220,8 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.string  "cardinality"
   end
 
-  add_index "message_data", ["data_field_id"], name: "message_data_data_field_id_idx"
-  add_index "message_data", ["message_id"], name: "message_data_message_id_idx"
+  add_index "message_data", ["data_field_id"], name: "message_data_data_field_id_idx", using: :btree
+  add_index "message_data", ["message_id"], name: "message_data_message_id_idx", using: :btree
 
   create_table "message_edo", primary_key: "message_edo_id", force: :cascade do |t|
     t.integer "message_id"
@@ -226,8 +229,8 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.string  "cardinality"
   end
 
-  add_index "message_edo", ["edo_id"], name: "message_edo_edo_id_idx"
-  add_index "message_edo", ["message_id"], name: "message_edo_message_id_idx"
+  add_index "message_edo", ["edo_id"], name: "message_edo_edo_id_idx", using: :btree
+  add_index "message_edo", ["message_id"], name: "message_edo_message_id_idx", using: :btree
 
   create_table "message_format", primary_key: "message_format_id", force: :cascade do |t|
     t.string "description"
@@ -251,16 +254,16 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.string  "phone"
   end
 
-  add_index "person", ["calnet_uid"], name: "calnet_uid_idx"
-  add_index "person", ["organization_id"], name: "organization_id_idx"
+  add_index "person", ["calnet_uid"], name: "calnet_uid_idx", using: :btree
+  add_index "person", ["organization_id"], name: "organization_id_idx", using: :btree
 
   create_table "person_role", primary_key: "person_role_id", force: :cascade do |t|
     t.integer "role_id"
     t.integer "person_id"
   end
 
-  add_index "person_role", ["person_id"], name: "person_id_idx"
-  add_index "person_role", ["role_id"], name: "role_id_idx"
+  add_index "person_role", ["person_id"], name: "person_id_idx", using: :btree
+  add_index "person_role", ["role_id"], name: "role_id_idx", using: :btree
 
   create_table "project_action", primary_key: "project_action_id", force: :cascade do |t|
     t.string  "entity"
@@ -270,9 +273,9 @@ ActiveRecord::Schema.define(version: 20150217225045) do
     t.text    "description"
   end
 
-  add_index "project_action", ["action_type_id"], name: "action_type_id_idx"
-  add_index "project_action", ["actor_id"], name: "actor_id_idx"
-  add_index "project_action", ["entity"], name: "entity_idx"
+  add_index "project_action", ["action_type_id"], name: "action_type_id_idx", using: :btree
+  add_index "project_action", ["actor_id"], name: "actor_id_idx", using: :btree
+  add_index "project_action", ["entity"], name: "entity_idx", using: :btree
 
   create_table "role", primary_key: "role_id", force: :cascade do |t|
     t.string "name"
