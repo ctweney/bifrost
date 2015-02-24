@@ -13,25 +13,28 @@ then
         exit
 fi
 
+if [ -z $RAILS_ENV ]
+then
+  echo "Using default RAILS_ENV value of 'production'"
+  RAILS_ENV="production"
+fi
+
 case "$1" in
 
-rc)  echo "Starting Console in Docker Container.."
-    vagrant ssh -c "sh /app/docker/scripts/rc.sh"
+rc)  echo "Starting Console in Docker Container, RAILS_ENV = $RAILS_ENV"
+    vagrant ssh -c "sh /app/docker/scripts/rc.sh $RAILS_ENV"
     ;;
-rdbm)  echo  "Running rake db:migrate in Docker container.."
-    vagrant ssh -c "sh /app/docker/scripts/rdbm.sh"
+rdbm)  echo  "Running rake db:migrate in Docker container, RAILS_ENV = $RAILS_ENV"
+    vagrant ssh -c "sh /app/docker/scripts/rdbm.sh $RAILS_ENV"
     ;;
-restore-db)  echo  "Restoring db from db/current.sql.zip"
-    vagrant ssh -c "sh /app/docker/scripts/restore-db.sh"
-    ;;
-restart) echo  "Restarting Docker Rails Container"
-    vagrant ssh -c "sh /app/docker/scripts/restart.sh"
+restart) echo  "Restarting Docker Rails Container, RAILS_ENV = $RAILS_ENV"
+    vagrant ssh -c "sh /app/docker/scripts/restart.sh $RAILS_ENV"
    ;;
-rebuild) echo  "Rebuilding Docker Rails Container"
-    vagrant ssh -c "sh /app/docker/scripts/rebuild.sh"
+rebuild) echo  "Rebuilding Docker Rails Container, RAILS_ENV = $RAILS_ENV"
+    vagrant ssh -c "sh /app/docker/scripts/rebuild.sh $RAILS_ENV"
    ;;
-cmd) echo "running '$2' in docker container in /app"
-  vagrant ssh -c "/app/docker/scripts/cmd.sh '$2'"
+cmd) echo "running '$2' in docker container in /app, RAILS_ENV = $RAILS_ENV"
+  vagrant ssh -c "/app/docker/scripts/cmd.sh $RAILS_ENV '$2'"
     ;;
 *) echo "Command not known"
    ;;

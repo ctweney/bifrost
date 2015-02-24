@@ -47,7 +47,8 @@ RUN bundle install
 RUN mkdir /app
 ADD . /app
 
-ENV RAILS_ENV development
+# default to production mode. Override by setting RAILS_ENV in the bash environment.
+ENV RAILS_ENV production
 
 EXPOSE 3000
 

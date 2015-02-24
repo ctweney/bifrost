@@ -8,6 +8,11 @@
   git clone https://github.com/ctweney/bifrost.git
   cd bifrost
   ```
+1. (Optional) Set Rails to development mode (production is the default in startup scripts):
+
+  ```
+  export RAILS_ENV="development"
+  ```
 1. Edit db/seeds.rb and make yourself an admin with a line like this:
 
   ```

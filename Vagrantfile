@@ -11,7 +11,7 @@ docker build -t rails /app
 
 # Run and link the containers
 docker run -d --name postgres -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker postgres:latest
-docker run -d -p 3000:3000 -v /app:/app --link postgres:db --name rails rails:latest
+docker run -e "RAILS_ENV=$1" -d -p 3000:3000 -v /app:/app --link postgres:db --name rails rails:latest
 
 SCRIPT
 
@@ -50,7 +50,8 @@ Vagrant.configure("2") do |config|
 
   # Setup the containers when the VM is first
   # created
-  config.vm.provision "shell", inline: $setup
+  RAILS_ENV = ENV['RAILS_ENV'] || "production"
+  config.vm.provision "shell", inline: $setup, args: RAILS_ENV
 
   # Make sure the correct containers are running
   # every time we start the VM.
