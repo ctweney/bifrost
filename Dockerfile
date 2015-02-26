@@ -37,15 +37,11 @@ RUN apt-get install -y -q postgresql-client
 ADD docker/rails/start-server.sh /start-server.sh
 RUN chmod +x /start-server.sh
 
-# Preinstall majority of gems
-WORKDIR /tmp 
-ADD ./Gemfile Gemfile
-ADD ./Gemfile.lock Gemfile.lock
-RUN bundle install 
-
-# Set up application code
 RUN mkdir /app
 ADD . /app
+WORKDIR /app
+RUN bundle install
+RUN bundle exec rake assets:precompile
 
 # default to production mode. Override by setting RAILS_ENV in the bash environment.
 ENV RAILS_ENV production
