@@ -78,4 +78,33 @@ through "./d" is the preferred way of interacting with the Docker container.
   vagrant destroy
   vagrant up
   ```
-  
+
+## Operational workflow
+
+Details of how to work with the private Docker repository are at this article, starting at Step 6: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04
+
+1. Get the magical self-signed cert from Steve Chan
+
+1. Copy ca.crt into /usr/local/share/ca-certificates/api-devops-prod-02.ist.berkeley.edu\:5001/
+
+1. Update the certificate store:
+
+  ```
+  sudo update-ca-certificates
+  ```
+1. Log into the Docker repository (Steve will provide you with credentials):
+
+  ```
+  docker login https://api-devops-prod-02.ist.berkeley.edu:5001
+  ```
+1. Get the latest image:
+
+  ```
+  docker pull api-devops-prod-02.ist.berkeley.edu:5001/bifrost
+  ```
+
+1. Run it:
+
+  ```
+  docker run -p 3000:3000 api-devops-prod-02.ist.berkeley.edu:5001/bifrost
+  ```
