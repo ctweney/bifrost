@@ -61,6 +61,7 @@ through "./d" is the preferred way of interacting with the Docker container.
 
   ```
   ./d rc
+  ```
 1. Run an arbitrary shell command inside the rails container:
 
   ```
@@ -77,3 +78,4 @@ through "./d" is the preferred way of interacting with the Docker container.
   vagrant destroy
   vagrant up
   ```
+  
