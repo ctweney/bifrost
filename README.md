@@ -1,6 +1,6 @@
 #Bifrost: Inventory of Interfaces at UC Berkeley
 
-##Installation
+##New Developer Setup
 
 1. Get the code and switch to its directory:
 
@@ -34,39 +34,77 @@
   Your first “vagrant up” will take a half hour or so, as it has to download a lot of materials (OS, Rubies, etc etc)
   Your firewall may hassle you to grant permission to necessary daemons (/etc/nfsd and others). Answer Yes, or else your NFS mount from host to guest will not work.
   You may also get prompted to enter your admin password (again, so NFS will work). Do so.
-1. Initialize the database:
+1. See the app running at http://localhost:3000/
 
-  ```
-  ./d cmd "rake db:create db:schema:load db:seed"
-  ```
-1. Restart rails:
+## Developer workflow
+
+The "./d" script is called from your host machine. It uses "vagrant ssh" to get inside the Vagrant virtual machine,
+where it then runs commands inside the docker container using "docker run" scripts located in ./docker/scripts. Going
+through "./d" is the preferred way of interacting with the Docker container.
+
+1. Restart rails (runs bundle install, compiles assets, creates/seeds/migrates database if needed):
 
   ```
   ./d restart
   ```
-
-1. See the app running at http://localhost:3000/
-
-## Development workflow
-1. Rebuild rails (when Gemfile changes, etc):
+1. Rebuild rails (takes longer than restart, but everything in the rails Docker container gets refreshed):
 
   ```
   ./d rebuild
   ```
-1. See rails logs inside the docker container:
+1. See rails logs:
 
   ```
-  vagrant ssh
-  docker logs rails
-  ```
-1. See what's going on inside docker container:
-
-  ```
-  vagrant ssh
-  docker ps
+  ./d logs
   ```
 1. Get a rails console inside the rails docker container:
 
   ```
   ./d rc
+  ```
+1. Run an arbitrary shell command inside the rails container:
+
+  ```
+  ./d cmd "bundle exec rake something:something"
+  ```
+1. Shut down the vagrant VM:
+
+  ```
+  vagrant halt
+  ```
+1. Wipe your vagrant VM clean and rebuild from scratch (drastic):
+
+  ```
+  vagrant destroy
+  vagrant up
+  ```
+
+## Operational workflow
+
+Details of how to work with the private Docker repository are at this article, starting at Step 6: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04
+
+1. Get the magical self-signed cert from Steve Chan
+
+1. Copy ca.crt into /usr/local/share/ca-certificates/api-devops-prod-02.ist.berkeley.edu\:5001/
+
+1. Update the certificate store:
+
+  ```
+  sudo update-ca-certificates
+  ```
+1. Log into the Docker repository (Steve will provide you with credentials):
+
+  ```
+  docker login https://api-devops-prod-02.ist.berkeley.edu:5001
+  ```
+1. Get the latest image:
+
+  ```
+  docker pull api-devops-prod-02.ist.berkeley.edu:5001/bifrost
+  ```
+
+1. Run it:
+
+  ```
+  docker run -p 3000:3000 api-devops-prod-02.ist.berkeley.edu:5001/bifrost
   ```

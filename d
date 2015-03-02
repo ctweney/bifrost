@@ -33,6 +33,9 @@ restart) echo  "Restarting Docker Rails Container, RAILS_ENV = $RAILS_ENV"
 rebuild) echo  "Rebuilding Docker Rails Container, RAILS_ENV = $RAILS_ENV"
     vagrant ssh -c "sh /app/docker/scripts/rebuild.sh $RAILS_ENV"
    ;;
+logs) echo "Tailing logs, RAILS_ENV = $RAILS_ENV"
+    vagrant ssh -c "sh /app/docker/scripts/logs.sh $RAILS_ENV"
+   ;;
 cmd) echo "running '$2' in docker container in /app, RAILS_ENV = $RAILS_ENV"
   vagrant ssh -c "/app/docker/scripts/cmd.sh $RAILS_ENV '$2'"
     ;;

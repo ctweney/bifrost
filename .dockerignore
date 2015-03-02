@@ -4,7 +4,6 @@
 *.iml
 .vagrant
 db/*.sqlite3
-config/secrets.yml
 tmp
 log/*.log
 .bundle

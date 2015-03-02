@@ -68,6 +68,3 @@ npm-debug.log
 
 # Vagrant
 .vagrant/
-
-# secrets
-config/secrets.yml
