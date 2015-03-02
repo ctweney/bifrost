@@ -1,4 +1,4 @@
-FROM ubuntu:12.04
+FROM ubuntu:14.04
 MAINTAINER talkingquickly.co.uk <ben@talkingquickly.co.uk>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -6,8 +6,6 @@ ENV DEBIAN_FRONTEND noninteractive
 # REPOS
 RUN apt-get -y update
 RUN apt-get install -y -q python-software-properties
-RUN add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
-RUN add-apt-repository -y ppa:chris-lea/node.js
 RUN apt-get -y update
 
 # INSTALL
