@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get '/api/apps' => 'api#apps'
   get '/denied' => 'index#denied', :defaults => {:format => 'html'}
+  get '/health_check' => 'index#health_check', :defaults => {:format => 'html'}
   get '/' => 'index#index', :defaults => {:format => 'html'}
 end
