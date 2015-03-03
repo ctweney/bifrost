@@ -7,7 +7,6 @@ class IndexController < ApplicationController
   end
 
   def denied
-
   end
 
   def health_check
@@ -17,7 +16,6 @@ class IndexController < ApplicationController
       Rails.logger.error "Got an exception trying to connect to database for health check: #{exception}"
     end
 
-    Rails.logger.warn "System roles = #{system_roles.inspect}"
     if system_roles.present? && system_roles.size == 2
       render :nothing => true, :status => 200
     else
