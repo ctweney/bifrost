@@ -9,3 +9,6 @@ Person.create(calnet_uid: '1013580', name: 'Steve Chan').roles << admin
 Person.create(calnet_uid: '980853', name: 'Tamer Sakr').roles << admin
 Person.create(calnet_uid: '304844', name: 'Adam Cohen').roles << admin
 Person.create(calnet_uid: '17232', name: 'Karin Bliman').roles << admin
+Person.create(calnet_uid: '194067', name: 'Jon Skelton').roles << admin
+Person.create(calnet_uid: '56735', name: 'Kai Hsieh').roles << admin
+
