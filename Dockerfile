@@ -39,6 +39,7 @@ RUN mkdir /app
 ADD . /app
 WORKDIR /app
 RUN bundle install
+RUN bundle exec rake spec
 RUN bundle exec rake assets:precompile
 
 # default to production mode. Override by setting RAILS_ENV in the bash environment.
