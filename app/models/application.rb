@@ -13,12 +13,33 @@ class Application < ActiveRecord::Base
   has_many :interfaces
 
   rails_admin do
-    fields do
-      help false
-    end
-    configure :application_id do
-      read_only true
-      label 'ID:'
+    list do
+      field :application_id do
+        column_width 20
+        read_only true
+        label 'ID:'
+        help false
+      end
+      field :name do
+        column_width 50
+        help false
+      end
+      field :description do
+        column_width 100
+        help false
+      end
+      field :owner do
+        column_width 50
+        help false
+      end
+      field :go_live do
+        column_width 20
+        help false
+      end
+      field :cs_module do
+        column_width 20
+        help false
+      end
     end
   end
 
