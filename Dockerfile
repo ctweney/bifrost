@@ -45,6 +45,9 @@ RUN bundle exec rake assets:precompile
 # default to production mode. Override by setting RAILS_ENV in the bash environment.
 ENV RAILS_ENV production
 
+# set RACK_ENV to deployment to prevent Rack::Lint::LintError
+ENV RACK_ENV deployment
+
 EXPOSE 3000
 
 CMD ["/start-server.sh"]
