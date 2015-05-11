@@ -1,6 +1,6 @@
 class IndexController < ApplicationController
 
-  before_filter :check_authenticated, except: [:denied, :health_check]
+  before_filter :check_authenticated, except: [:denied, :health_check, :server_info]
 
   def index
     redirect_to '/admin'
@@ -23,4 +23,9 @@ class IndexController < ApplicationController
       render :nothing => true, :status => 500
     end
   end
+
+  def server_info
+    render :json => ServerRuntime.get_settings.to_json
+  end
+
 end
