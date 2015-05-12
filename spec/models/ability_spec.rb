@@ -11,6 +11,16 @@ describe Ability do
     end
   end
 
+  context 'anonymous user' do
+    let(:user) { nil }
+    it 'should have no rights' do
+      expect(subject.can?(:access, :all)).to eq false
+      expect(subject.can?(:dashboard, :all)).to eq false
+      expect(subject.can?(:read, :all)).to eq false
+      expect(subject.can?(:manage, :all)).to eq false
+    end
+  end
+
   context 'non-privileged user' do
     it_behaves_like 'a user'
     it 'should not be able to manage anything' do
