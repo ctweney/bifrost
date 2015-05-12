@@ -9,16 +9,7 @@ class ServerRuntime
     settings = {}
     settings[:startup_time] = `date`.strip
     settings[:hostname] = `hostname -s`.strip
-
-    begin
-      git_file = File.open(Rails.root.join('versions', 'git.txt'))
-      if git_file
-        rev = git_file.read.strip
-        settings[:git_commit] = rev
-      end
-    rescue
-      settings[:git_commit] = `git log --pretty=format:'%H' -n 1`
-    end
+    settings[:git_commit] = `git log --pretty=format:'%H' -n 1`
 
     migrations = Dir.glob("#{Rails.root}/db/migrate/*.rb")
     current_schema = File.basename(migrations.sort.last).split('_')[0]

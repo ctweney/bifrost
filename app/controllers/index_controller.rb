@@ -1,6 +1,6 @@
 class IndexController < ApplicationController
 
-  before_filter :check_authenticated, except: [:denied, :health_check, :server_info]
+  before_filter :check_authenticated, except: [:denied, :health_check]
 
   def index
     redirect_to '/admin'
