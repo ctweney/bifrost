@@ -22,7 +22,6 @@ describe Ability do
     let(:admin_role) { Role.create({role_id: Ability::ADMIN_ROLE_ID, name: 'Admin', description: 'Can manage all objects'}) }
     before do
       user.roles << admin_role
-      user.save
     end
     it_behaves_like 'a user'
     it 'should be able to manage everything' do
@@ -34,7 +33,6 @@ describe Ability do
     let(:editor_role) { Role.create({role_id: Ability::EDITOR_ROLE_ID, name: 'Editor', description: 'Can manage all objects except Person and Role'}) }
     before do
       user.roles << editor_role
-      user.save
     end
     it_behaves_like 'a user'
     it 'should have editorial rights' do

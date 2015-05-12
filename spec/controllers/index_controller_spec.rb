@@ -2,12 +2,12 @@ describe IndexController, type: :controller do
 
   render_views
 
-  context 'with anonymous user' do
-    before do
-      FactoryGirl.create(:administrator)
-      FactoryGirl.create(:editor)
-    end
+  before do
+    FactoryGirl.create(:administrator)
+    FactoryGirl.create(:editor)
+  end
 
+  context 'with anonymous user' do
     it 'should be a redirect to cas login page' do
       get :index
       expect(response).to redirect_to 'http://test.host/people/auth/cas'
@@ -42,6 +42,15 @@ describe IndexController, type: :controller do
       get :index
       expect(response).to redirect_to '/admin'
     end
+
+    it 'should not allow server_info check to unprivileged user' do
+      get :server_info
+      expect(response).to redirect_to '/denied'
+    end
+  end
+
+  context 'with logged-in administrative user' do
+    login_administrator
 
     it 'should allow server_info check' do
       get :server_info

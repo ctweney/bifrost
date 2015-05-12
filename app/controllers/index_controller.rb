@@ -25,6 +25,7 @@ class IndexController < ApplicationController
   end
 
   def server_info
+    authorize!(:manage, :all)
     render :json => ServerRuntime.get_settings.to_json
   end
 
