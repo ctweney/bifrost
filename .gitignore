@@ -49,7 +49,7 @@ app/assets/stylesheets/application.css
 /fixtures/vcr_cassettes/*.json
 
 # Ignore git version stamp
-/versions/git.txt
+git.json
 
 # Ignore torquebox build files
 *.knob
