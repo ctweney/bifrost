@@ -10,7 +10,7 @@ class ServerRuntime
     settings[:startup_time] = `date`.strip
     settings[:hostname] = `hostname -s`.strip
     settings[:git_commit] = `git log --pretty=format:'%H' -n 1`
-    settings[:git_commit_data] = `git log --pretty=format:'%ad' -n 1`
+    settings[:git_commit_date] = `git log --pretty=format:'%ad' -n 1`
 
     if settings[:git_commit].blank?
       begin
